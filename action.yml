@@ -1,0 +1,66 @@
+name: 'Rover Terraform Plan Visualisation'
+description: 'Web based visualisation for Terraform plan'
+inputs:
+  root-directory: 
+    description: 'Root Terraform directory within repo'
+    required: true
+  terraform-backend-config:
+    description: 'Relative path to root-directory for the Terraform backend configuration file. Can be empty file if not applicable'
+    required: true
+  terraform-vars-file:
+    description: 'Relative path to root-directory for the Terraform input vars file. Can be empty file if not applicable'
+    required: true
+  azure-arm-client-id:
+    description: 'Client Id If using AzureRm backend'
+    required: false
+  azure-arm-client-secret:
+    description: 'Client Secret If using AzureRm backend'
+    required: false
+  azure-arm-subscription-id:
+    description: 'Subscription Id If using AzureRm backend'
+    required: false
+  azure-arm-tenant-id:
+    description: 'Tenant Id If using AzureRm backend'
+    required: false
+  gh-pages-branch:
+    description: 'Branch name for Rover output for GitHub Pages site'
+    required: false
+    default: 'gh-pages'
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Set working dir
+      run: |
+        cd ${{ inputs.root-directory }}
+        mkdir rover-website
+    
+    - name: Use Rover to generate Terraform visualisation
+      run: |
+        echo "Working Dir: $(pwd)"
+        docker run --rm -i -p 9000:9000 -v "$(pwd):/src" \
+          -e ARM_CLIENT_ID=${{ inputs.azure-arm-client-id }} \
+          -e ARM_CLIENT_SECRET=${{ inputs.azure-arm-client-secret }} \
+          -e ARM_SUBSCRIPTION_ID=${{ inputs.azure-arm-subscription-id }} \
+          -e ARM_TENANT_ID=${{ inputs.azure-arm-tenant-id }} \
+          im2nguyen/rover \
+          -tfBackendConfig "${{ inputs.terraform-backend-config }}" \
+          -tfVarsFile "${{ inputs.terraform-vars-file }}" \
+          -standalone true
+      shell: bash
+
+    - name: Unzip Rover files
+      uses: montudor/action-zip@v1
+      with:
+        args: unzip -o rover.zip -d ./rover-website
+
+    - name: Deploy 🚀
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        folder: rover-website
+        branch: ${{ inputs.gh-pages-branch }}
+branding:
+  icon: settings
+  color: orange
