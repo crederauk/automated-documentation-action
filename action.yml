@@ -10,18 +10,6 @@ inputs:
   terraform-vars-file:
     description: 'Relative path to root-directory for the Terraform input vars file. Can be empty file if not applicable'
     required: true
-  azure-arm-client-id:
-    description: 'Client Id If using AzureRm backend'
-    required: false
-  azure-arm-client-secret:
-    description: 'Client Secret If using AzureRm backend'
-    required: false
-  azure-arm-subscription-id:
-    description: 'Subscription Id If using AzureRm backend'
-    required: false
-  azure-arm-tenant-id:
-    description: 'Tenant Id If using AzureRm backend'
-    required: false
   gh-pages-branch:
     description: 'Branch name for Rover output for GitHub Pages site'
     required: false
@@ -34,17 +22,18 @@ runs:
 
     - name: Set working dir
       run: |
-        cd ${{ inputs.root-directory }}
+        cd "${{ inputs.root-directory }}"
         mkdir rover-website
+      shell: bash
     
     - name: Use Rover to generate Terraform visualisation
       run: |
         echo "Working Dir: $(pwd)"
         docker run --rm -i -p 9000:9000 -v "$(pwd):/src" \
-          -e ARM_CLIENT_ID=${{ inputs.azure-arm-client-id }} \
-          -e ARM_CLIENT_SECRET=${{ inputs.azure-arm-client-secret }} \
-          -e ARM_SUBSCRIPTION_ID=${{ inputs.azure-arm-subscription-id }} \
-          -e ARM_TENANT_ID=${{ inputs.azure-arm-tenant-id }} \
+            -e ARM_CLIENT_ID=${{ env.ARM_CLIENT_ID }} \
+            -e ARM_CLIENT_SECRET=${{ env.ARM_CLIENT_SECRET }} \
+            -e ARM_SUBSCRIPTION_ID=${{ env.ARM_SUBSCRIPTION_ID }} \
+            -e ARM_TENANT_ID=${{ env.ARM_TENANT_ID }} \
           im2nguyen/rover \
           -tfBackendConfig "${{ inputs.terraform-backend-config }}" \
           -tfVarsFile "${{ inputs.terraform-vars-file }}" \
