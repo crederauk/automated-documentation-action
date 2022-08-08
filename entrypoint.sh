@@ -1,6 +1,7 @@
-rover -standalone true \
-    -tfBackendConfig "backend.config" \
-    -tfVarsFile "demo.tfvars" \
+
+#!/bin/bash
+
+rover -tfBackendConfig "backend.config" -tfVarsFile "demo.tfvars" -standalone true
 
 #rover -standalone true \
 #    -workingDir "$1" \
