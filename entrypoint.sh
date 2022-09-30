@@ -11,7 +11,7 @@ unzip -o rover.zip -d $ROVER_FOLDER
 
 #BRANCH="$4"
 BRANCH="testing-upload"
-OIDC_TOKEN="$5"
+#OIDC_TOKEN="$5"
 
 git checkout --orphan $BRANCH
 git reset --hard

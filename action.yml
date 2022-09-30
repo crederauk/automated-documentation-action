@@ -23,7 +23,6 @@ runs:
     - ${{ inputs.terraform-backend-config }}
     - ${{ inputs.terraform-vars-file }}
     - ${{ inputs.gh-pages-branch }}
-    - ${{ secrets.GITHUB_TOKEN }}
 
 # every workflow run has this ${{ secrets.GITHUB_TOKEN }} https://docs.github.com/en/actions/security-guides/automatic-token-authentication
 #     - name: Deploy 🚀
