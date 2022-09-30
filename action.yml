@@ -4,12 +4,12 @@ inputs:
   terraform-root-directory: 
     description: 'Root Terraform directory within repo'
     required: false
-    default: './terraform'
+    default: 'terraform'
   terraform-backend-config:
-    description: 'Relative path to root-directory for the Terraform backend configuration file. Can be empty file if not applicable'
+    description: 'Relative path to terraform-root-directory for the Terraform backend configuration file. Can be empty file if not applicable'
     required: true
   terraform-vars-file:
-    description: 'Relative path to root-directory for the Terraform input vars file. Can be empty file if not applicable'
+    description: 'Relative path to terraform-root-directory for the Terraform input vars file. Can be empty file if not applicable'
     required: true
   gh-pages-branch:
     description: 'Branch name for Rover output for GitHub Pages site'
