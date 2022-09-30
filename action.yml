@@ -22,42 +22,16 @@ runs:
     - ${{ inputs.terraform-root-directory }}
     - ${{ inputs.terraform-backend-config }}
     - ${{ inputs.terraform-vars-file }}
-# runs:
-#   using: "composite"
-#   steps:
-#     - name: Checkout
-#       uses: actions/checkout@v3
+    - ${{ inputs.gh-pages-branch }}
+    - ${{ secrets.GITHUB_TOKEN }}
 
-#     - name: Set working dir
-#       run: |
-#         cd "${{ inputs.root-directory }}"
-#         mkdir rover-website
-#       shell: bash
-    
-#     - name: Use Rover to generate Terraform visualisation
-#       run: |
-#         echo "Working Dir: $(pwd)"
-#         docker run --rm -i -p 9000:9000 -v "$(pwd):/src" \
-#             -e ARM_CLIENT_ID=${{ env.ARM_CLIENT_ID }} \
-#             -e ARM_CLIENT_SECRET=${{ env.ARM_CLIENT_SECRET }} \
-#             -e ARM_SUBSCRIPTION_ID=${{ env.ARM_SUBSCRIPTION_ID }} \
-#             -e ARM_TENANT_ID=${{ env.ARM_TENANT_ID }} \
-#           im2nguyen/rover \
-#           -tfBackendConfig "${{ inputs.terraform-backend-config }}" \
-#           -tfVarsFile "${{ inputs.terraform-vars-file }}" \
-#           -standalone true
-#       shell: bash
-
-#     - name: Unzip Rover files
-#       uses: montudor/action-zip@v1
-#       with:
-#         args: unzip -o rover.zip -d ./rover-website
-
+# every workflow run has this ${{ secrets.GITHUB_TOKEN }} https://docs.github.com/en/actions/security-guides/automatic-token-authentication
 #     - name: Deploy 🚀
 #       uses: JamesIves/github-pages-deploy-action@v4
 #       with:
 #         folder: rover-website
 #         branch: ${{ inputs.gh-pages-branch }}
+#         target-folder: rover
 branding:
   icon: settings
   color: orange
