@@ -15,6 +15,6 @@ BRANCH="testing-upload"
 
 git checkout --orphan $BRANCH
 git reset --hard
-git commit --no-verify --allow-empty -m Initial gh-pages commit
+git commit --no-verify --allow-empty -m 'Initial gh-pages commit'
 git add --all $ROVER_FOLDER
 git push --force $BRANCH:$BRANCH
