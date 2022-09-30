@@ -1,9 +1,6 @@
 #!/bin/bash
 
-rover -standalone true \
-    -workingDir "terraform" \
-    -tfBackendConfig "backend.config" \
-    -tfVarsFile "demo.tfvars" \
+rover  -workingDir "/home/runner/work/terraform-rover-demo/terraform-rover-demo/terraform" -tfBackendConfig "backend.config" -tfVarsFile "demo.tfvars" -standalone true
 
 # rover -standalone true \
 #     -workingDir "$1" \
