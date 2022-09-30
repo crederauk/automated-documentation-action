@@ -3,7 +3,8 @@ description: 'Web based visualisation for Terraform plan'
 inputs:
   terraform-root-directory: 
     description: 'Root Terraform directory within repo'
-    required: true
+    required: false
+    default: './terraform'
   terraform-backend-config:
     description: 'Relative path to terraform-root-directory for the Terraform backend configuration file. Can be empty file if not applicable'
     required: true
