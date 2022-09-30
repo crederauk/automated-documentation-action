@@ -19,7 +19,7 @@ runs:
   using: "docker"
   image: "Dockerfile"
   args:
-    - '${{ env.github_workspace }}/${{ inputs.terraform-root-directory }}'
+    - ${{ inputs.terraform-root-directory }}
     - ${{ inputs.terraform-backend-config }}
     - ${{ inputs.terraform-vars-file }}
 # runs:
