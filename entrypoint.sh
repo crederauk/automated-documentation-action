@@ -13,6 +13,9 @@ unzip -o rover.zip -d $ROVER_FOLDER
 BRANCH="testing-upload"
 #OIDC_TOKEN="$5"
 
+git config --global user.name "Automated Documentation"
+git config --global user.email "automated.documentation@users.noreply.github.com"
+
 git checkout --orphan $BRANCH
 git reset --hard
 git commit --no-verify --allow-empty -m 'Initial gh-pages commit'
