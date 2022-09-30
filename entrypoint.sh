@@ -1,7 +1,7 @@
 #!/bin/bash
 
 rover -standalone true \
-    -workingDir "$1" \
+    -workingDir "$GITHUB_WORKSPACE/$1" \
     -tfBackendConfig "$2" \
     -tfVarsFile "$3" \
 
