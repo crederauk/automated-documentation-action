@@ -1,7 +1,7 @@
 
 #!/bin/bash
 
-# rover -tfBackendConfig "backend.config" -tfVarsFile "demo.tfvars" -standalone true
+cd "$1"
 
 rover -standalone true \
     -workingDir "$1" \
