@@ -20,7 +20,7 @@ npm install 1>/dev/null
 npm run build 1>/dev/null
 cd ..
 go build
-mv -v rover $ROOT
+cp -v rover $ROOT
 
 cd $ROOT
 for entry in "."/*; 
