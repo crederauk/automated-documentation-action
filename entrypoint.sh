@@ -17,6 +17,7 @@ git config --global user.email "automated.documentation@users.noreply.github.com
 
 git checkout --orphan $BRANCH
 git reset --hard
+git add index.html
 git add --all $ROVER_FOLDER/\*
 git commit --no-verify --allow-empty -m 'Initial gh-pages commit'
 git push -f origin $BRANCH
