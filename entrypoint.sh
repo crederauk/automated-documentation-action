@@ -20,7 +20,7 @@ npm install 1>/dev/null
 npm run build 1>/dev/null
 echo "After npm run build $(pwd)"
 go install
-cd ROOT
+cd $ROOT
 
 echo "After go install $(pwd)"
 
