@@ -5,7 +5,7 @@ rover -workingDir "$1" \
     -tfVarsFile "$3" \
     -standalone true
 
-ROVER_FOLDER="./rover"
+ROVER_FOLDER="./terraform-visualisation"
 
 unzip -o rover.zip -d $ROVER_FOLDER
 
