@@ -20,6 +20,9 @@ npm run build 1>/dev/null
 cd ..
 mkdir "install" && cd "$_"
 go install
+cd ..
+
+echo "$(pwd)"
 
 # run rover
 rover -workingDir "$1" \
