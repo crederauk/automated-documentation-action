@@ -1,6 +1,11 @@
 #!/bin/bash
 
 ROOT=$(pwd)
+for entry in "."/*; 
+do   
+    echo "$entry"; 
+done
+
 # git setup
 BRANCH="$4"
 git config --global --add safe.directory /github/workspace
@@ -20,6 +25,7 @@ npm install 1>/dev/null
 npm run build 1>/dev/null
 cd ..
 go build
+chmod +x rover
 cp -v rover $ROOT
 
 cd $ROOT
