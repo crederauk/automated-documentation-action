@@ -11,6 +11,7 @@ git reset --hard
 
 ROOT=$(pwd)
 
+ls
 # rover
 
 # install rover
