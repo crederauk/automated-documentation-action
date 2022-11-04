@@ -18,17 +18,15 @@ git clone https://github.com/im2nguyen/rover.git "rover/source"
 cd "rover/source/ui"
 npm install 1>/dev/null
 npm run build 1>/dev/null
-echo "After npm run build $(pwd)"
-go install
+cd ..
+go build
 
- for entry in "."/*; 
- do   
+for entry in "."/*; 
+do   
     echo "$entry"; 
- done
+done
 
 cd $ROOT
-
-echo "After go install $(pwd)"
 
 # run rover
 rover -workingDir "$1" \
