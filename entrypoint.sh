@@ -1,5 +1,6 @@
 #!/bin/bash
 
+ROOT=$(pwd)
 # git setup
 BRANCH="$4"
 git config --global --add safe.directory /github/workspace
@@ -13,16 +14,15 @@ git reset --hard
 
 # install rover
 echo "Installing Rover"
-git clone https://github.com/im2nguyen/rover.git "rover/repo"
-cd "rover/repo/ui"
+git clone https://github.com/im2nguyen/rover.git "rover/source"
+cd "rover/source/ui"
 npm install 1>/dev/null
 npm run build 1>/dev/null
-cd ../..
-mkdir "install" && cd "$_"
+echo "After npm run build $(pwd)"
 go install
-cd ../..
+cd ROOT
 
-echo "$(pwd)"
+echo "After go install $(pwd)"
 
 # run rover
 rover -workingDir "$1" \
