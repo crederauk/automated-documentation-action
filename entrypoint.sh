@@ -20,13 +20,13 @@ npm install 1>/dev/null
 npm run build 1>/dev/null
 cd ..
 go build
+mv -v rover $ROOT
 
+cd $ROOT
 for entry in "."/*; 
 do   
     echo "$entry"; 
 done
-
-cd $ROOT
 
 # run rover
 rover -workingDir "$1" \
