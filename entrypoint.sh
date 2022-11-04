@@ -20,6 +20,12 @@ npm install 1>/dev/null
 npm run build 1>/dev/null
 echo "After npm run build $(pwd)"
 go install
+
+ for entry in "."/*; 
+ do   
+    echo "$entry"; 
+ done
+
 cd $ROOT
 
 echo "After go install $(pwd)"
