@@ -21,6 +21,9 @@ cd ..
 go install
 cd .. # back to root
 
+echo $(pwd)
+echo ls
+
 # run rover
 rover -workingDir "$1" \
     -tfBackendConfig "$2" \
