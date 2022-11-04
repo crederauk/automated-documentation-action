@@ -2,6 +2,7 @@
 
 # git setup
 BRANCH="$4"
+git config --global --add safe.directory /github/workspace
 git config --global user.name "Automated Documentation"
 git config --global user.email "automated.documentation@users.noreply.github.com"
 
