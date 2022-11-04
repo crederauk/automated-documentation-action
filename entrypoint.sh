@@ -17,10 +17,10 @@ git clone https://github.com/im2nguyen/rover.git "rover/repo"
 cd "rover/repo/ui"
 npm install 1>/dev/null
 npm run build 1>/dev/null
-cd ..
+cd ../..
 mkdir "install" && cd "$_"
 go install
-cd ..
+cd ../..
 
 echo "$(pwd)"
 
