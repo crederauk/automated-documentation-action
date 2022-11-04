@@ -12,11 +12,12 @@ git reset --hard
 # rover
 
 # install rover
+echo "Installing Rover"
 ROVER_REPO_FOLDER="rover_setup"
 git clone https://github.com/im2nguyen/rover.git $ROVER_REPO_FOLDER
 cd "$ROVER_REPO_FOLDER/ui"
-npm install &>/dev/null
-npm run build &>/dev/null
+npm install 1>/dev/null
+npm run build 1>/dev/null
 cd ..
 go install
 cd .. # back to root
