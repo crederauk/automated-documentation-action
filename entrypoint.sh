@@ -9,6 +9,8 @@ git config --global user.email "automated.documentation@users.noreply.github.com
 git checkout --orphan $BRANCH
 git reset --hard
 
+ROOT=$(pwd)
+
 # rover
 
 # install rover
@@ -20,10 +22,10 @@ npm install 1>/dev/null
 npm run build 1>/dev/null
 cd ..
 go install
-cd .. # back to root
+cd $ROOT
 
-echo $(pwd)
-echo ls
+echo $(pwd) 
+ls
 
 # run rover
 rover -workingDir "$1" \
