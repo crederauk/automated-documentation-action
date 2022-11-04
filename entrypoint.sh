@@ -25,14 +25,12 @@ npm install 1>/dev/null
 npm run build 1>/dev/null
 cd ..
 go build
-#chmod +x rover
-#cp -v rover $ROOT
-#
-#cd $ROOT
-#for entry in "."/*; 
-#do   
-#    echo "$entry"; 
-#done
+chmod +x rover
+
+for entry in "."/*; 
+do   
+   echo "$entry"; 
+done
 
 # run rover
 rover -workingDir "$1" \
