@@ -15,12 +15,11 @@ git reset --hard
 ROVER_REPO_FOLDER="rover_setup"
 git clone https://github.com/im2nguyen/rover.git $ROVER_REPO_FOLDER
 cd "$ROVER_REPO_FOLDER/ui"
-npm install 2>&1
-npm run build 2>&1
+npm install &>/dev/null
+npm run build &>/dev/null
 cd ..
 go install
-
-echo $(pwd)
+cd .. # back to root
 
 # run rover
 rover -workingDir "$1" \
