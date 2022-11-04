@@ -9,24 +9,17 @@ git config --global user.email "automated.documentation@users.noreply.github.com
 git checkout --orphan $BRANCH
 git reset --hard
 
-ROOT=$(pwd)
-
-ls
 # rover
 
 # install rover
 echo "Installing Rover"
-ROVER_REPO_FOLDER="rover_setup"
-git clone https://github.com/im2nguyen/rover.git $ROVER_REPO_FOLDER
-cd "$ROVER_REPO_FOLDER/ui"
+git clone https://github.com/im2nguyen/rover.git "rover/repo"
+cd "ui"
 npm install 1>/dev/null
 npm run build 1>/dev/null
 cd ..
+mkdir "install" && cd "$_"
 go install
-cd $ROOT
-
-echo $(pwd) 
-ls
 
 # run rover
 rover -workingDir "$1" \
