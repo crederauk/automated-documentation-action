@@ -19,4 +19,4 @@ git checkout --orphan $BRANCH
 git reset --hard
 git add --all $ROVER_FOLDER/\*
 git commit --no-verify --allow-empty -m 'Initial gh-pages commit'
-git push origin $BRANCH
+git push origin $BRANCH -f
