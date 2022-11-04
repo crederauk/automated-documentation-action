@@ -1,4 +1,4 @@
-FROM im2nguyen/rover
+FROM golang:1.18.3-alpine
 
 RUN apk add unzip
 RUN apk add git
