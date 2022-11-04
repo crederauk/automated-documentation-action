@@ -14,7 +14,7 @@ git reset --hard
 # install rover
 echo "Installing Rover"
 git clone https://github.com/im2nguyen/rover.git "rover/repo"
-cd "ui"
+cd "rover/repo/ui"
 npm install 1>/dev/null
 npm run build 1>/dev/null
 cd ..
