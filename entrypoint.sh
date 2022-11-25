@@ -1,8 +1,7 @@
 #!/bin/ash
 # set -e
 
-STARTDIR=$(pwd)
-ls $STARTDIR
+ls $(pwd)
 
 # git setup
 BRANCH="$4"
@@ -19,8 +18,7 @@ git reset --hard
 chmod +x /tools/rover.sh
 /tools/rover.sh
 
-cd $STARTDIR
-ls $STARTDIR
+ls $(pwd)
 
 # run rover
 rover -workingDir "$1" \
