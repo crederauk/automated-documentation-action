@@ -12,8 +12,8 @@ git reset --hard
 ## ROVER
 
 # install rover
-chmod +x ./tools/rover.sh
-./tools/rover.sh
+chmod +x /tools/rover.sh
+/tools/rover.sh
 
 
 # run rover
