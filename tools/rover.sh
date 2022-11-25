@@ -14,7 +14,7 @@ npm run build
 
 echo "Installing Rover in container"
 cd ..
-go install
+# go install
 
 # go back up a level
 echo 'In subfolder'
@@ -22,9 +22,4 @@ ls $(pwd)
 cd ..
 
 echo 'Out of subfolder'
-ls $(pwd)
-
-cd ..
-
-echo 'Up another level'
 ls $(pwd)
