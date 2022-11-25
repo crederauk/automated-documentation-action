@@ -23,3 +23,8 @@ cd ..
 
 echo 'Out of subfolder'
 ls $(pwd)
+
+cd ..
+
+echo 'Up another level'
+ls $(pwd)
