@@ -2,6 +2,7 @@
 # set -e
 
 WORKINGDIR=$(pwd)
+ls $WORKINGDIR
 
 # git setup
 BRANCH="$4"
@@ -19,6 +20,7 @@ chmod +x /tools/rover.sh
 /tools/rover.sh
 
 cd $WORKINGDIR
+ls $WORKINGDIR
 
 # run rover
 rover -workingDir "$1" \
