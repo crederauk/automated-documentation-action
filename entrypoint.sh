@@ -1,6 +1,8 @@
 #!/bin/ash
 # set -e
 
+WORKINGDIR=$(pwd)
+
 # git setup
 BRANCH="$4"
 git config --global --add safe.directory /github/workspace
@@ -16,7 +18,7 @@ git reset --hard
 chmod +x /tools/rover.sh
 /tools/rover.sh
 
-ls $(pwd)
+cd $WORKINGDIR
 
 # run rover
 rover -workingDir "$1" \
