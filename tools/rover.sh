@@ -17,4 +17,9 @@ cd ..
 go install
 
 # go back up a level
+echo 'In subfolder'
+ls $(pwd)
 cd ..
+
+echo 'Out of subfolder'
+ls $(pwd)
