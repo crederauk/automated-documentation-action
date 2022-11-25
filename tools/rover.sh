@@ -23,3 +23,7 @@ cd ..
 
 echo 'Out of subfolder'
 ls $(pwd)
+
+echo 'source folder'
+cd source
+ls $(pwd)
