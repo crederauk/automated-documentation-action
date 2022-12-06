@@ -1,55 +1,36 @@
 name: 'Rover Terraform Plan Visualisation'
 description: 'Web based visualisation for Terraform plan'
 inputs:
-  root-directory: 
+  terraform-root-directory: 
     description: 'Root Terraform directory within repo'
-    required: true
+    required: false
+    default: 'terraform'
   terraform-backend-config:
-    description: 'Relative path to root-directory for the Terraform backend configuration file. Can be empty file if not applicable'
+    description: 'Relative path to terraform-root-directory for the Terraform backend configuration file. Can be empty file if not applicable'
     required: true
   terraform-vars-file:
-    description: 'Relative path to root-directory for the Terraform input vars file. Can be empty file if not applicable'
+    description: 'Relative path to terraform-root-directory for the Terraform input vars file. Can be empty file if not applicable'
     required: true
   gh-pages-branch:
     description: 'Branch name for Rover output for GitHub Pages site'
     required: false
     default: 'gh-pages'
 runs:
-  using: "composite"
-  steps:
-    - name: Checkout
-      uses: actions/checkout@v3
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - ${{ inputs.terraform-root-directory }}
+    - ${{ inputs.terraform-backend-config }}
+    - ${{ inputs.terraform-vars-file }}
+    - ${{ inputs.gh-pages-branch }}
 
-    - name: Set working dir
-      run: |
-        cd "${{ inputs.root-directory }}"
-        mkdir rover-website
-      shell: bash
-    
-    - name: Use Rover to generate Terraform visualisation
-      run: |
-        echo "Working Dir: $(pwd)"
-        docker run --rm -i -p 9000:9000 -v "$(pwd):/src" \
-            -e ARM_CLIENT_ID=${{ env.ARM_CLIENT_ID }} \
-            -e ARM_CLIENT_SECRET=${{ env.ARM_CLIENT_SECRET }} \
-            -e ARM_SUBSCRIPTION_ID=${{ env.ARM_SUBSCRIPTION_ID }} \
-            -e ARM_TENANT_ID=${{ env.ARM_TENANT_ID }} \
-          im2nguyen/rover \
-          -tfBackendConfig "${{ inputs.terraform-backend-config }}" \
-          -tfVarsFile "${{ inputs.terraform-vars-file }}" \
-          -standalone true
-      shell: bash
-
-    - name: Unzip Rover files
-      uses: montudor/action-zip@v1
-      with:
-        args: unzip -o rover.zip -d ./rover-website
-
-    - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@v4
-      with:
-        folder: rover-website
-        branch: ${{ inputs.gh-pages-branch }}
+# every workflow run has this ${{ secrets.GITHUB_TOKEN }} https://docs.github.com/en/actions/security-guides/automatic-token-authentication
+#     - name: Deploy 🚀
+#       uses: JamesIves/github-pages-deploy-action@v4
+#       with:
+#         folder: rover-website
+#         branch: ${{ inputs.gh-pages-branch }}
+#         target-folder: rover
 branding:
   icon: settings
   color: orange
